@@ -6,30 +6,21 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === 'query') {
-    console.log(message.body);
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message.type === 'mounted') {
+    //let queryoptions: chrome.tabs.queryinfo = { 
+    //  title: `*${message.body}*`, 
+    //};
 
-    let queryOptions = { 
-      title: `*${message.body}*`, 
-      //url: 'thing' 
-    };
-
-    chrome.tabs.query(queryOptions, (tabs) => {
-      console.log(tabs)
+    chrome.tabs.query({}, (tabs) => {
       sendResponse(tabs)
     });
-
-  } else if (message === 'ping') {
-    sendResponse('pong')
   }
-  //return Promise.resolve("Dummy response to keep the console quiet");
   return true
 });
 
 chrome.commands.onCommand.addListener((command) => {
   if (command === 'toggle-popup') {
-    console.log('i am toggling the popup');
 
     // @ts-expect-error
     chrome.action.openPopup()

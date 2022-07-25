@@ -11,16 +11,43 @@
 	let resultsShown: number = 11;
 	let selectedIndex: number = 0;
 
+	let allTabs: chrome.tabs.Tab[] = [];
+
 	onMount(() => {
-		searchQuery = "";
-		onInputChange();
+		//searchQuery = "";
 		searchQueryInput.focus();
+
+		chrome.runtime.sendMessage(
+			{ type: "mounted" },
+			(response: chrome.tabs.Tab[]) => {
+				allTabs = response;
+				tabs = response;
+			}
+		);
 	});
+
+	function filterTabs(input: string): chrome.tabs.Tab[] {
+		let filteredTabs: chrome.tabs.Tab[] = [];
+
+		try {
+			const regex = new RegExp(input, "i");
+
+			for (let tab of allTabs) {
+				if (regex.test(tab.title) || regex.test(tab.url)) {
+					filteredTabs.push(tab);
+				}
+			}
+		} catch (error) {
+		}
+		return filteredTabs;
+	}
 
 	function onKeyDown(e: KeyboardEvent) {
 		if (e.code === "Enter") {
 			e.preventDefault();
-			chrome.tabs.update(tabs[selectedIndex].id, { active: true });
+			if (tabs.length > 0) {
+				chrome.tabs.update(tabs[selectedIndex].id, { active: true });
+			}
 
 			// Moving up
 		} else if (e.code === "Tab" && e.shiftKey && selectedIndex > 0) {
@@ -34,7 +61,11 @@
 			}
 
 			// Moving down
-		} else if (e.code === "Tab" && !e.shiftKey && selectedIndex < tabs.length - 1) {
+		} else if (
+			e.code === "Tab" &&
+			!e.shiftKey &&
+			selectedIndex < tabs.length - 1
+		) {
 			e.preventDefault();
 			selectedIndex += 1;
 
@@ -45,18 +76,13 @@
 					block: "end",
 				});
 			}
+		//} else if (".+*?^$()[]{}|\\".includes(e.key)) {
+		//	e.preventDefault();
 		}
 	}
 
 	function onInputChange() {
-		chrome.runtime.sendMessage(
-			{ type: "query", body: searchQuery },
-			//{ type: "query", body: "" },
-			(response) => {
-				selectedIndex = 0;
-				tabs = response;
-			}
-		);
+		tabs = filterTabs(searchQuery);
 	}
 </script>
 
@@ -67,13 +93,14 @@
 		on:input={onInputChange}
 		on:keydown={onKeyDown}
 		placeholder="Search for title"
+		spellcheck="false"
 		type="text"
 	/>
 	<div class="results-container">
 		<div class="results" bind:this={resultsElement}>
 			{#each tabs as tab, i}
 				<p class={i === selectedIndex ? "selected" : ""}>
-					{i}. {tab.title}
+					{new URL(tab.url).hostname} | {tab.title}
 				</p>
 			{/each}
 		</div>

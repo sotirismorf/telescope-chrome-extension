@@ -1,7 +1,7 @@
 {
-  "name": "Svelte Typescript Chrome Extension Boilerplate",
-  "description": "Boilerplate for Chrome Extension Svelte Typescript project",
-  "version": "1.0",
+  "name": "Telescope for Chrome",
+  "description": "Navigate your hundreds of chrome tabs easily!",
+  "version": "0.2.0",
   "manifest_version": 3,
   "icons": {
     "16": "/icons/get_started16.png",
@@ -9,12 +9,6 @@
     "48": "/icons/get_started48.png",
     "128": "/icons/get_started128.png"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["src/pages/content/index.js"]
-    }
-  ],
   "background": {
     "service_worker": "src/pages/background/index.js"
   },
