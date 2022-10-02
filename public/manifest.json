@@ -1,13 +1,12 @@
 {
   "name": "Telescope for Chrome",
   "description": "Navigate your hundreds of chrome tabs easily!",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "manifest_version": 3,
   "icons": {
-    "16": "/icons/get_started16.png",
-    "32": "/icons/get_started32.png",
-    "48": "/icons/get_started48.png",
-    "128": "/icons/get_started128.png"
+    "16": "/icons/icon16.png",
+    "32": "/icons/icon32.png",
+    "128": "/icons/icon128.png"
   },
   "background": {
     "service_worker": "src/pages/background/index.js"
@@ -16,10 +15,9 @@
   "action": {
     "default_popup": "src/pages/popup/index.html",
     "default_icon": {
-      "16": "/icons/get_started16.png",
-      "32": "/icons/get_started32.png",
-      "48": "/icons/get_started48.png",
-      "128": "/icons/get_started128.png"
+      "16": "/icons/icon16.png",
+      "32": "/icons/icon32.png",
+      "128": "/icons/icon128.png"
     }
   },
   "permissions": ["storage","tabs"],

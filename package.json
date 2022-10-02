@@ -1,25 +1,26 @@
 {
-    "name": "telescope-chrome-extension",
-    "version": "0.2.0",
-    "type": "module",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sotirismorf/telescope-chrome-extension.git"
-    },
-    "scripts": {
-        "dev": "vite build -w",
-        "build": "vite build",
-        "check": "svelte-check --tsconfig ./tsconfig.json"
-    },
-    "devDependencies": {
-        "@sveltejs/vite-plugin-svelte": "^1.0.2",
-        "@tsconfig/svelte": "^3.0.0",
-        "@types/chrome": "^0.0.195",
-        "svelte": "^3.49.0",
-        "svelte-check": "^2.8.1",
-        "svelte-preprocess": "^4.10.7",
-        "tslib": "^2.4.0",
-        "typescript": "^4.7.4",
-        "vite": "^3.0.9"
-    }
+  "name": "telescope-chrome-extension",
+  "version": "0.2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sotirismorf/telescope-chrome-extension.git"
+  },
+  "scripts": {
+    "dev": "vite build -w",
+    "build": "vite build",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.8",
+    "@tsconfig/svelte": "^3.0.0",
+    "@types/chrome": "^0.0.195",
+    "svelte": "^3.50.1",
+    "svelte-check": "^2.9.1",
+    "svelte-preprocess": "^4.10.7",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.4",
+    "vite-plugin-zip-pack": "^1.0.4"
+  }
 }
