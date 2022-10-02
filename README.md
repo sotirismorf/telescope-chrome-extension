@@ -1,8 +1,12 @@
-# Svelte Typescript Chrome Extension Boilerplate
+# Telescope for Chrome
 
-Boilerplate for Chrome Extension Svelte Typescript project
+### An extension for searching through open tabs
 
-## Features
+![Screenshot](public/screenshot.png)
+
+The idea for this extension came from [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
+
+## Technologies used:
 
 -   [Svelte](https://svelte.dev/)
 -   [TypeScript](https://www.typescriptlang.org/)
@@ -13,11 +17,10 @@ Boilerplate for Chrome Extension Svelte Typescript project
 
 ```bash
 # install dependencies
-npm i
+pnpm install
 
-# build files to `/dist` directory
-# vite.build.watch rebuilds when modules have changed on disk
-npm run dev
+# build extension to the /dist
+pnpm run dev
 ```
 
 ## Build
